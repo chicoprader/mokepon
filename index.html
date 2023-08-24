@@ -3,28 +3,45 @@
     <head>
         <meta charset="UTF-8">
         <title>MOKEPON</title>
+        <script src="Mokepon.js"></script>
+        <link rel="stylesheet" href="styles.css">
 
     </head>
     <body>
 
-        <h1> Mokepon water fuego planta</h1>
-
         <section id="seleccionar-mascota">
-            <h2>Elige tu mascota</h2>
 
-            <label for="hipodoge">Hipodoge</label>
-            <input type="radio" name="mascota" id="hipodoge">
+            <h1 class="title">Mokepon</h1>
 
-            <label for="capipepo">Capipepo</label>
-            <input type="radio" name="mascota" id="capipepo">
+            <h2 class="subtitle">Elige tu mascota</h2>
 
-            <label for="ratigueya">Ratigueya</label>
-            <input type="radio" name="mascota" id="ratigueya">
+            <div class="tarjetas">
 
-            <button id="boton-mascota">Seleccionar</button>
+                <label class="tarjeta-de-mokepon" for="hipodoge">
+                    <p>Hipodoge</p>
+                    <img src="https://static.platzi.com/media/tmp/class-files/github/curso-programacion-basica/curso-programacion-basica-35-assets-mokepones/programar/mokepon/assets/mokepons_mokepon_ratigueya_attack.png">
+                </label>
+                <input type="radio" name="mascota" id="hipodoge">
+
+                <label class="tarjeta-de-mokepon" for="capipepo">
+                    <p>Capipepo</p>
+                    <img src="https://static.platzi.com/media/tmp/class-files/github/curso-programacion-basica/curso-programacion-basica-35-assets-mokepones/programar/mokepon/assets/mokepons_mokepon_hipodoge_attack.png">
+                </label>
+                <input type="radio" name="mascota" id="capipepo">
+
+                <label class="tarjeta-de-mokepon" for="ratigueya">
+                    <p>Ratigueya</p>
+                    <img src="https://static.platzi.com/media/tmp/class-files/github/curso-programacion-basica/curso-programacion-basica-35-assets-mokepones/programar/mokepon/assets/mokepons_mokepon_capipepo_attack.png">
+                </label>
+                <input type="radio" name="mascota" id="ratigueya">
+
+            </div>
+
+            <button class="input-button" id="boton-mascota">Seleccionar</button>
         </section>
 
         <section id="seleccionar-ataque">
+            <h1 class="title">Mokepon 🔥💧🌱</h1>
             <h2>Elige ataque</h2>
             <p>Tu mascota <span id="mascota-jugador"></span> del jugador tiene <span id="vidas-jugador">3</span> vidas</p>
             <p>La mascota <span id="mascota-enemigo"></span> del enemigo tiene <span id="vidas-enemigo">3</span> vidas </p>
@@ -39,7 +56,7 @@
         </section>
 
         <button id="reiniciar">Reiniciar</button>
-        <script src="Mokepon.js"></script>
+
 
 
     </body>

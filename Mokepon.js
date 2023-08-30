@@ -22,11 +22,12 @@ function iniciarJuego() {
 }
 
 function seleccionarMascotaJugador() {
+    let comezar = false;
     let sectionSeleccionarMascota = document.getElementById('seleccionar-mascota');
     sectionSeleccionarMascota.style.display = 'none';
 
     let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque');
-    sectionSeleccionarAtaque.style.display = 'block';
+    sectionSeleccionarAtaque.style.display = 'flex';
 
     let inputHipodoge = document.getElementById( 'hipodoge' );
     let inputCapipepo = document.getElementById( 'capipepo' );
@@ -35,12 +36,16 @@ function seleccionarMascotaJugador() {
 
     if (inputHipodoge.checked) {
         spanMascotaJugador.innerHTML = 'Hipodoge';
+        comezar = true;
     }   else if ( inputCapipepo.checked ) {
         spanMascotaJugador.innerHTML = 'Capipepo';
+        comezar = true;
     }   else if ( inputRatigueya.checked ) {
         spanMascotaJugador.innerHTML = 'Ratigueya';
+        comezar = true;
     }   else {
         alert( "selecciona una mascosta" );
+
     }
 
     seleccionarMascotaEnemigo();
@@ -108,16 +113,23 @@ function revisarVidas() {
 }
 
 function crearMensaje( resultado ) {
-    let sectionMensajes = document.getElementById("mensajes" );
+    let sectionMensajes = document.getElementById('resultado' );
+    let ataquesDelJugador = document.getElementById('ataques-del-jugador' );
+    let ataquesDelEnemigo = document.getElementById('ataques-del-enemigo' );
 
-    let parrafo = document.createElement('p' );
-    parrafo.innerHTML = 'Tu mascota ataco con ' + ataqueJugador  + ', la mascota del enemigo ataco con ' + ataqueEnemigo + '-' + resultado;
+    let nuevoAtaqueDelJugador=document.createElement('p')
+    let nuevoAtaqueDelEnemigo = document.createElement('p');
 
-    sectionMensajes.appendChild(parrafo);
+    sectionMensajes.innerHTML = resultado;
+    nuevoAtaqueDelJugador.innerHTML = ataqueJugador;
+    nuevoAtaqueDelEnemigo.innerHTML = ataqueEnemigo;
+
+    ataquesDelJugador.appendChild(nuevoAtaqueDelJugador);
+    ataquesDelEnemigo.appendChild(nuevoAtaqueDelEnemigo);
 }
 
 function crearMensajFinal(resultadoFinal) {
-    let sectionMensaje = document.getElementById('mensajes' );
+    let sectionMensaje = document.getElementById('resultado' );
     let parrafo = document.createElement('p');
     parrafo.innerHTML = resultadoFinal
     sectionMensaje.appendChild( parrafo )

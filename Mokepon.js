@@ -5,14 +5,12 @@ sectionReiniciar.style.display = 'none';
 const botonFuego = document.getElementById( 'boton-fuego' );
 const botonAgua = document.getElementById('boton-agua' );
 const botonTierra = document.getElementById('boton-tierra' );
-const botonReiniciar = document.getElementById('reiniciar');
+const botonReiniciar = document.getElementById('boton-reiniciar');
 
 const sectionSeleccionarMascota = document.getElementById('seleccionar-mascota');
-const inputHipodoge = document.getElementById( 'hipodoge' );
-const inputCapipepo = document.getElementById( 'capipepo' );
-const inputRatigueya = document.getElementById( 'ratigueya' );
-const spanMascotaJugador = document.getElementById('mascota-jugador' );
 
+const spanMascotaJugador = document.getElementById('mascota-jugador' );
+const spanMascotaEnemigo = document.getElementById('mascota-enemigo' );
 const spanVidasJugador = document.getElementById('vidas-jugador' );
 const spanVidasEnemigo = document.getElementById('vidas-enemigo' );
 
@@ -22,11 +20,15 @@ const ataquesDelEnemigo = document.getElementById('ataques-del-enemigo' );
 
 const sectionMensaje = document.getElementById('resultado' );
 
-const spanMascotaEnemigo = document.getElementById('mascota-enemigo' );
+const contenedorTarjetas = document.getElementById('contenedorTarjetas')
 
 let mokepones = []
 let ataqueJugador;
 let ataqueEnemigo;
+let opcionDeMokepones;
+let inputHipodoge;
+let inputCapipepo;
+let inputRatigueya;
 let vidasJugador = 3;
 let vidasEnemigo = 3;
 
@@ -34,16 +36,16 @@ class Mokepon {
     constructor(nombre, foto, vida) {
         this.nombre = nombre;
         this.foto = foto;
-        this.vida = vida;
+        //this.vida = vida;
         this.ataques = [];
     }
 }
 
-let hipodoge = new Mokepon('Hipodoge', 'https://static.platzi.com/media/tmp/class-files/github/curso-programacion-basica/curso-programacion-basica-35-assets-mokepones/programar/mokepon/assets/mokepons_mokepon_ratigueya_attack.png', 5 );
+let hipodoge = new Mokepon('Hipodoge', './assets/mokepons_mokepon_hipodoge_attack.png', 5 );
 
-let capipepo = new Mokepon('Capipepo', 'https://static.platzi.com/media/tmp/class-files/github/curso-programacion-basica/curso-programacion-basica-35-assets-mokepones/programar/mokepon/assets/mokepons_mokepon_hipodoge_attack.png', 5 );
+let capipepo = new Mokepon('Capipepo', './assets/mokepons_mokepon_capipepo_attack.png', 5 );
 
-let ratigueya = new Mokepon('Ratigueya', 'https://static.platzi.com/media/tmp/class-files/github/curso-programacion-basica/curso-programacion-basica-35-assets-mokepones/programar/mokepon/assets/mokepons_mokepon_capipepo_attack.png', 5 )
+let ratigueya = new Mokepon('Ratigueya', './assets/mokepons_mokepon_ratigueya_attack.png', 5 )
 
 hipodoge.ataques.push(
     { nombre: '💧', id: 'boton-agua' },
@@ -69,33 +71,50 @@ ratigueya.ataques.push(
     { nombre: '🌱', id: 'boton-tierra' },
 )
 
-console.log(Mokepon)
+mokepones.push(hipodoge, capipepo, ratigueya);
 
 
 function iniciarJuego() {
 
     sectionSeleccionarAtaque.style.display = 'none';
+
+    mokepones.forEach(( mokepon ) => {
+        opcionDeMokepones = `   <input type="radio" name="mascota" id='${mokepon.nombre}'/>
+                                <label class="tarjeta-de-mokepon" for='${mokepon.nombre}'>
+                                    <p>${mokepon.nombre}</p>
+                                    <img src='${mokepon.foto}' alt='${mokepon.nombre}'>
+                                </label>`;
+
+        contenedorTarjetas.innerHTML += opcionDeMokepones;
+
+            inputHipodoge = document.getElementById('Hipodoge' );
+            inputCapipepo = document.getElementById( 'Capipepo' );
+            inputRatigueya = document.getElementById('Ratigueya' );
+
+    })
+
     botonMascotaJugador.addEventListener( 'click', seleccionarMascotaJugador );
     botonFuego.addEventListener( 'click', ataqueFuego );
     botonAgua.addEventListener('click', ataqueAgua);
     botonTierra.addEventListener( 'click', ataqueTierra);
-    botonReiniciar.addEventListener( 'click', reiniciarJuego)
+    botonReiniciar.addEventListener( 'click', reiniciarJuego);
+
 }
 
 function seleccionarMascotaJugador() {
-    let comezar = false;
+
     sectionSeleccionarMascota.style.display = 'none';
     sectionSeleccionarAtaque.style.display = 'flex';
 
     if (inputHipodoge.checked) {
-        spanMascotaJugador.innerHTML = 'Hipodoge';
-        comezar = true;
+        spanMascotaJugador.innerHTML = inputHipodoge.id;
+
     }   else if ( inputCapipepo.checked ) {
-        spanMascotaJugador.innerHTML = 'Capipepo';
-        comezar = true;
+        spanMascotaJugador.innerHTML = inputCapipepo.id;
+
     }   else if ( inputRatigueya.checked ) {
-        spanMascotaJugador.innerHTML = 'Ratigueya';
-        comezar = true;
+        spanMascotaJugador.innerHTML = inputRatigueya.id;
+
     }   else {
         alert( "selecciona una mascosta" );
     }

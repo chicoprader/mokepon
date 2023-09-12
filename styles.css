@@ -100,7 +100,7 @@ input:checked + label {
     padding: 30px;
     box-sizing: border-box;
     border-radius: 10px;
-    width: 100px;
+    width: 80px;
     color: white;
     font-family: 'Fredoka', cursive;
     height: 80px;
